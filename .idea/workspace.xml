@@ -1,44 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="71e0446a-5703-466e-8349-ee9a9f0d3932" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Entities/Words/RepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Entities/Words/Word.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/repositories.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/services.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Infrastructure/MysqlWordsRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/UseCases/GetWord/UseCase.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/Mysql/MysqlDatabaseConnection.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/Autowire/Autowire.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/Autowire/AutowireBuilder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/library/Exceptions/BindingResolutionException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/Exceptions/DiException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/Exceptions/RouterException.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vendor/Exceptions/ViewException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/apple.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/apple.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/IndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WordsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WordsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/dependencies.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/dependencies.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/UseCases/GetWordsData/UseCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/UseCases/GetWordsData/UseCase.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/UseCases/UseCaseFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/UseCases/UseCaseFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/index/index.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/index/index.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/footer.phtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/layouts/index.phtml" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/layouts/index.phtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/Application.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/Application.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/Database/Db.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/Database/Db.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/DependencyInjection.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/DependencyInjection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/Http/Controller/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/Http/Controller/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/Http/Response/Response.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/Http/Response/Response.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/View.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/View.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/autoloader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoloader.php" afterDir="false" />
-    </list>
+    <list default="true" id="71e0446a-5703-466e-8349-ee9a9f0d3932" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -458,12 +421,12 @@
       <workItem from="1591251836607" duration="5202000" />
       <workItem from="1591342715320" duration="8606000" />
       <workItem from="1591429590207" duration="6809000" />
-      <workItem from="1591504356541" duration="9971000" />
+      <workItem from="1591504356541" duration="10190000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76806000" />
+    <option name="totallyTimeSpent" value="77025000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
