@@ -15,6 +15,6 @@ class Response
   public function getResponse()
   {
     header('Content-Type: application/json');
-    return json_encode([$this->response]);
+    return json_encode($this->response);
   }
 }

@@ -1,5 +1,9 @@
 <div class="wrapper">
-  <form action="">
-    <input type="text" value="<?php echo $param ?>">
-  </form>
+  <?php if ($developers && count($developers)): ?>
+    <ul>
+      <?php foreach ($developers as $key => $developer): ?>
+        <li><?php echo $developer['name'] ?> --- <?php echo $developer['email'] ?> --- <?php echo $developer['job'] ?></li>
+      <?php endforeach; ?>
+    </ul>
+  <?php endif; ?>
 </div>

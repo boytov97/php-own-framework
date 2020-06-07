@@ -2,6 +2,7 @@
 
 use Http\Request\Request;
 use Http\Response\Response;
+use Http\Request\RequestInterface;
 
 class Application
 {
@@ -21,10 +22,14 @@ class Application
     $this->di = $di;
   }
 
+  /**
+   * @throws ReflectionException
+   * @throws \Exceptions\RouterException
+   */
   public function run()
   {
     $request = new Request($_GET, $_POST);
-    $this->di->set('request', $request);
+    $this->di->set(RequestInterface::class, $request);
     $this->router->setDi($this->di);
 
     $requestUri = $_SERVER['REQUEST_URI'];

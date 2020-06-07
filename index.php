@@ -20,6 +20,12 @@ try {
   $dependencies = require __DIR__ . "/app/Http/dependencies.php";
   $dependencies($di);
 
+  $repositories = require __DIR__ . '/app/Http/repositories.php';
+  $repositories($di);
+
+  $services = require __DIR__ . '/app/Http/services.php';
+  $services($di);
+
   $routing = new Router($routes);
 
   $application = new Application($routing);

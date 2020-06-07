@@ -1,12 +1,12 @@
 <?php
 
 use Http\Request\RequestInterface;
+use Exceptions\RouterException;
 
 class Router
 {
   /** @var DependencyInjection */
   protected $di;
-
   /** @var RequestInterface */
   protected $request;
 
@@ -38,12 +38,13 @@ class Router
    * @param string $method
    * @return string
    * @throws ReflectionException
+   * @throws RouterException
    */
   public function execute(string $requestUri, string $method)
   {
     $foundRoute = [];
     if (count($this->routes) > 0) {
-      foreach ($this->routes as $routeMethod => $route) {
+      foreach ($this->routes as $route) {
         if ("/" === $requestUri || "/index" === $requestUri || "/index/index" === $requestUri) {
           $foundRoute = [
             'controller' => 'index',
@@ -53,11 +54,38 @@ class Router
         }
 
         if ($route['uri'] === $requestUri) {
-          if ($routeMethod === 'any') {
+          if ($route['method'] === 'any') {
             $foundRoute = $route;
           } else {
             if ($route['method'] === strtolower($method)) {
               $foundRoute = $route;
+            }
+          }
+        }
+      }
+
+      if (count($foundRoute) === 0) {
+        $requestUriElements = explode('/', $requestUri);
+
+        foreach ($this->routes as $route) {
+          preg_match('/^.+{(.+)}$/', $route['uri'], $matches);
+
+          if (count($matches) > 1) {
+            $parameterRegex = $matches[1];
+            $requestUriRegex = preg_replace('/{.+}$/', $parameterRegex, $route['uri']);
+            $requestUriRegex = preg_replace('/\//', '\\/', $requestUriRegex);
+            preg_match("/^{$requestUriRegex}$/", $requestUri, $requestUriMatches);
+
+            if (count($requestUriMatches) > 0) {
+              if ($route['method'] === 'any') {
+                $foundRoute = $route;
+                $foundRoute['parameter'] = array_pop($requestUriElements);
+              } else {
+                if ($route['method'] === strtolower($method)) {
+                  $foundRoute = $route;
+                  $foundRoute['parameter'] = array_pop($requestUriElements);
+                }
+              }
             }
           }
         }
@@ -80,6 +108,7 @@ class Router
    * @param array $foundRoute
    * @return string
    * @throws ReflectionException
+   * @throws RouterException
    */
   protected function build(array $foundRoute)
   {
@@ -87,7 +116,7 @@ class Router
       $controllerPath = $this->getControllerPath($foundRoute);
 
       if ($controllerPath) {
-        include $controllerPath;
+        //include $controllerPath;
 
         $controller = $this->getController($foundRoute);
         $action = $this->getAction($foundRoute);
@@ -95,11 +124,11 @@ class Router
         try {
           $reflector = new ReflectionClass($controller);
         } catch (ReflectionException $e) {
-          return "The controller {$controller} does not exist";
+          throw new RouterException("The controller {$controller} does not exist");
         }
 
         if (!$reflector->isInstantiable()) {
-          return "The controller is not instantiable";
+          throw new RouterException("The controller is not instantiable");
         }
 
         /** @var \Http\Controller\Controller $newController */
@@ -109,30 +138,53 @@ class Router
 
         if ($hasAction) {
           $newController->view->setView($this->getControllerName($foundRoute));
+          $newController->setDi($this->di);
+          $newController->initialize();
 
           $reflectionClass = new ReflectionClass($controller);
           $currentMethodParams = $reflectionClass->getMethod($action)->getParameters();
         }
 
         if (count($currentMethodParams) > 0) {
-          $firstParamClass = $currentMethodParams[0]->getClass()->name;
+          $request = null;
+          $parameter = null;
+          $instanceOfRequest = true;
+          foreach ($currentMethodParams as $param) {
+            $paramClass = $param->getClass();
 
-          if ($firstParamClass === 'Http\Request\RequestInterface') {
-            $request = $this->di->get('request');
+            if (is_null($paramClass)) {
+              $parameter = array_key_exists('parameter', $foundRoute) ? $foundRoute['parameter'] : null;
+            } else {
+              $parameterClassName = $paramClass->getName();
+              $request = ($parameterClassName === 'Http\Request\RequestInterface')
+                ? $this->di->get($parameterClassName)
+                : $instanceOfRequest = false;
+            }
+          }
+
+          if (!$instanceOfRequest) {
+            throw new RouterException("First parameter class must be Http\Request\RequestInterface");
+          }
+
+          if ($request && $parameter) {
+            return $newController->$action($request, $parameter);
+          } elseif ($request) {
             return $newController->$action($request);
+          } else {
+            return $newController->$action($parameter);
           }
         }
 
         if ($hasAction) {
           return $newController->$action();
         } else {
-          return "Action not found";
+          throw new RouterException("Action not found");
         }
       } else {
-        return "Controller not found";
+        throw new RouterException("Controller not found");
       }
     } else {
-      return "Route not found";
+      throw new RouterException("Route not found");
     }
   }
 
@@ -160,7 +212,7 @@ class Router
    */
   protected function getControllerPath(array $route)
   {
-    $controllerName = array_key_exists('controller', $route) ? $route['controller'] : "";
+    $controllerName = array_key_exists('controller', $route) ? $route['controller'] : "index";
     $controller = ucfirst($controllerName) . "Controller.php";
     $controllerPath = $this->controllerDir . $controller;
 
@@ -177,7 +229,7 @@ class Router
    */
   protected function getControllerName(array $route)
   {
-    return array_key_exists('controller', $route) ? $route['controller'] : "";
+    return array_key_exists('controller', $route) ? $route['controller'] : "index";
   }
 
   /**

@@ -1,6 +1,9 @@
 <?php
 
 require_once "DependencyInjection.php";
+require_once "Exceptions/DiException.php";
+require_once "Exceptions/ViewException.php";
+require_once "Exceptions/RouterException.php";
 require_once "View.php";
 require_once "Router.php";
 require_once "Loader.php";

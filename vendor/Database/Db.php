@@ -16,7 +16,7 @@ class Db
   public function mysqlConnect()
   {
     $dbHost = array_key_exists('host', $this->mysqlConfig) ? $this->mysqlConfig['host'] : '';
-    $dbName = array_key_exists('name', $this->mysqlConfig) ? $this->mysqlConfig['name'] : '';
+    $dbName = array_key_exists('database', $this->mysqlConfig) ? $this->mysqlConfig['database'] : '';
     $dbUser = array_key_exists('user', $this->mysqlConfig) ? $this->mysqlConfig['user'] : '';
     $dbPassword = array_key_exists('password', $this->mysqlConfig) ? $this->mysqlConfig['password'] : '';
 

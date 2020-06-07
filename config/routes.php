@@ -10,16 +10,16 @@ return [
   ],
   [
     'method' => 'get',
-    'name' => 'customers',
-    'uri' => '/index/customers',
-    'controller' => 'index',
-    'action' => 'customers'
-  ],
-  [
-    'method' => 'get',
     'name' => 'words',
     'uri' => '/words',
     'controller' => 'words',
     'action' => 'index'
   ],
+  [
+    'method' => 'get',
+    'name' => 'word',
+    'uri' => '/word/{[0-9]+}',
+    'controller' => 'words',
+    'action' => 'word'
+  ]
 ];

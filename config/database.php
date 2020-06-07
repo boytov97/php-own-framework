@@ -3,9 +3,9 @@
 return [
   'mysql' => [
     'host' => 'localhost',
-    'port' => '22',
-    'database' => '',
-    'username' => 'root',
-    'password' => '123456'
+    'port' => '3306',
+    'database' => 'for_export',
+    'username' => '',
+    'password' => ''
   ]
 ];

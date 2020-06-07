@@ -1,7 +1,8 @@
 <?php
 
-namespace app\UseCases\GetWordsData;
+namespace app\UseCases\GetWord;
 
+use app\Entities\Words\Word;
 use app\UseCases\UseCase as UseCaseInterface;
 use app\Entities\Words\RepositoryInterface as WordsRepository;
 
@@ -16,10 +17,11 @@ class UseCase implements UseCaseInterface
   }
 
   /**
-   * @return array
+   * @param int $id
+   * @return Word
    */
-  public function execute(): array
+  public function execute(int $id): Word
   {
-    return $this->wordsRepository->findAll();
+    return $this->wordsRepository->findOne($id);
   }
 }
